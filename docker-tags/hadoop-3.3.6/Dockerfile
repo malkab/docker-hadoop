@@ -29,7 +29,10 @@ ADD assets/run_datanode.sh /
 RUN chmod 755 /*.sh
 
 # Comment the following three lines for fast build in developing the image
-# RUN chmod 755 -R /usr/bin/ ; chmod 755 /config.sh ; /config.sh ; rm /config.sh
+RUN chmod 755 -R /usr/bin/ ; chmod 755 /config.sh ; /config.sh ; rm /config.sh
+# RUN chown -R 1000:1000 /hadoop_tmp
+# RUN chown -R 1000:1000 /hadoop
+
 # FROM scratch
 # COPY --from=build / /
 
