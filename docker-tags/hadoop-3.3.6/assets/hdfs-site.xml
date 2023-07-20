@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+
+    <!--
+
+
+        NameNode configuration.
+
+
+    -->
+
+    <property>
+        <name>dfs.name.dir</name>
+        <value>/data_namenode</value>
+        <description>Folder to store the HDFS metadata. This should be persisted.</description>
+        <final>true</final>
+    </property>
+
+    <property>
+        <name>dfs.namenode.http-address</name>
+        <value>0.0.0.0:8022</value>
+        <description>This is where the NameNode publishes its web dashboard.</description>
+    </property>
+
+    <property>
+        <name>dfs.namenode.rpc-address</name>
+        <value>0.0.0.0:9002</value>
+    </property>
+
+    <property>
+        <name>dfs.namenode.handler.count</name>
+        <value>100</value>
+    </property>
+
+    <property>
+        <name>dfs.namenode.service.handler.count</name>
+        <value>100</value>
+    </property>
+
+    <!--
+
+
+        DataNode configuration.
+
+
+    -->
+
+    <property>
+        <name>dfs.data.dir</name>
+        <value>/data_datanode</value>
+        <description>Folder to store the HDFS data. This should be persisted.</description>
+        <final>true</final>
+    </property>
+
+    <property>
+        <name>dfs.heartbeat.interval</name>
+        <value>3</value>
+        <description>Heartbeat of the DataNode in seconds.</description>
+    </property>
+
+    <property>
+        <name>dfs.safemode.threshold.pct</name>
+        <value>1.0f</value>
+        <description>A security setting for replication. Don't pay much attention.</description>
+    </property>
+
+    <property>
+        <name>dfs.datanode.http.address</name>
+        <value>0.0.0.0:8032</value>
+        <description>This is where the DataNode publishes its web dashboard.</description>
+    </property>
+
+    <property>
+        <name>dfs.datanode.address</name>
+        <value>0.0.0.0:9878</value>
+    </property>
+
+    <property>
+        <name>dfs.datanode.ipc.address</name>
+        <value>0.0.0.0:9899</value>
+    </property>
+
+    <property>
+        <name>dfs.blocksize</name>
+        <value>268435456</value>
+    </property>
+
+    <property>
+        <name>dfs.replication</name>
+        <value>5</value>
+    </property>
+
+</configuration>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+
+    <!--
+
+
+        NameNode configuration.
+
+
+    -->
+
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>/data_namenode</value>
+        <description>Folder to store the HDFS metadata. This should be persisted.</description>
+        <final>true</final>
+    </property>
+
+    <property>
+        <name>dfs.namenode.http-address</name>
+        <value>HDFS_SITE_DFS_NAMENODE_HTTP_ADDRESS</value>
+        <description>This is where the NameNode publishes its web dashboard.</description>
+    </property>
+
+    <property>
+        <name>dfs.namenode.rpc-address</name>
+        <value>HDFS_SITE_DFS_NAMENODE_RPC_ADDRESS</value>
+    </property>
+
+    <property>
+        <name>dfs.namenode.handler.count</name>
+        <value>100</value>
+    </property>
+
+    <property>
+        <name>dfs.namenode.service.handler.count</name>
+        <value>100</value>
+    </property>
+
+    <!--
+
+
+        DataNode configuration.
+
+
+    -->
+
+    <property>
+        <name>dfs.datanode.data.dir</name>
+        <value>[DISK]file:///data_datanode</value>
+        <description>Folder to store the HDFS data. This should be persisted.</description>
+        <final>true</final>
+    </property>
+
+    <property>
+        <name>dfs.heartbeat.interval</name>
+        <value>3</value>
+        <description>Heartbeat of the DataNode in seconds.</description>
+    </property>
+
+    <property>
+        <name>dfs.safemode.threshold.pct</name>
+        <value>1.0f</value>
+        <description>A security setting for replication. Don't pay much attention.</description>
+    </property>
+
+    <property>
+        <name>dfs.datanode.http.address</name>
+        <value>HDFS_SITE_DFS_DATANODE_HTTP_ADDRESS</value>
+        <description>This is where the DataNode publishes its web dashboard.</description>
+    </property>
+
+    <!-- <property>
+        <name>dfs.datanode.address</name>
+        <value>HDFS_SITE_DFS_DATANODE_ADDRESS</value>
+    </property>
+
+    <property>
+        <name>dfs.datanode.ipc.address</name>
+        <value>HDFS_SITE_DFS_DATANODE_IPC_ADDRESS</value>
+    </property> -->
+
+    <property>
+        <name>dfs.blocksize</name>
+        <value>268435456</value>
+    </property>
+
+    <property>
+        <name>dfs.replication</name>
+        <value>5</value>
+    </property>
+
+    <property>
+        <name>dfs.client.use.datanode.hostname</name>
+        <value>true</value>
+    </property>
+
+    <property>
+        <name>dfs.datanode.use.datanode.hostname</name>
+        <value>true</value>
+    </property>
+
+    <property>
+        <name>dfs.namenode.redundancy.considerLoad</name>
+        <value>false</value>
+    </property>
+
+</configuration>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+
+    <!--
+        This and fs.default.name are the same.
+        This must be set with an env var in production
+    -->
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://helios:9002</value>
+        <description>The name of the default file system.</description>
+    </property>
+
+    <!--
+        Memory buffer to move files (4MB)
+    -->
+    <property>
+        <name>io.file.buffer.size</name>
+        <value>4194304</value>
+        <description>Size of read/write buffer used in SequenceFiles.</description>
+    </property>
+
+    <!--
+        Temp folder.
+    -->
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/app/hadoop/tmp</value>
+        <description>A base for other temporary directories.</description>
+    </property>
+
+    <!--
+        Time in minutes to empty trash (5 days)
+    -->
+    <property>
+        <name>fs.trash.interval</name>
+        <value>7200</value>
+    </property>
+
+</configuration>

@@ -1,0 +1,52 @@
+version: '3.5'
+
+volumes:
+    hadoop_namenode:
+        name: hadoop_namenode
+    hadoop_namenode_logs:
+        name: hadoop_namenode_logs
+    hadoop_datanode:
+        name: hadoop_datanode
+    hadoop_datanode_logs:
+        name: hadoop_datanode_logs
+
+services:
+    namenode:
+        image: malkab/hadoop:3.3.6
+        hostname: helios
+        container_name: hadoop_namenode
+        network_mode: host
+
+        environment:
+            HADOOP_HEAPSIZE_MAX: 5g
+            HADOOP_ROOT_LOGGER: INFO,console
+            HDFS_NAMENODE_OPTS: "-XX:+UseParallelGC -Xmx4g"
+            CORE_SITE_FS_DEFAULTFS: helios:9022
+            HDFS_SITE_DFS_NAMENODE_RPC_ADDRESS: 0.0.0.0:9022
+            HDFS_SITE_DFS_NAMENODE_HTTP_ADDRESS: 0.0.0.0:8035
+
+        volumes:
+            - hadoop_namenode:/data_namenode
+            - hadoop_namenode_logs:/hadoop/logs
+
+        command: -c "/run_namenode.sh"
+
+    datanode:
+        image: malkab/hadoop:3.3.6
+        hostname: helios
+        container_name: hadoop_datanode
+        network_mode: host
+
+        environment:
+            HADOOP_HEAPSIZE_MAX: 5g
+            HADOOP_ROOT_LOGGER: INFO,console
+            HDFS_DATANODE_OPTS: "-XX:+UseParallelGC -Xmx4g"
+            CORE_SITE_FS_DEFAULTFS: helios:9022
+            HDFS_SITE_DFS_NAMENODE_RPC_ADDRESS: helios:9022
+            HDFS_SITE_DFS_DATANODE_HTTP_ADDRESS: 0.0.0.0:8036
+
+        volumes:
+            - hadoop_datanode:/data_datanode
+            - hadoop_datanode_logs:/hadoop/logs
+
+        command: -c "/run_datanode.sh"
