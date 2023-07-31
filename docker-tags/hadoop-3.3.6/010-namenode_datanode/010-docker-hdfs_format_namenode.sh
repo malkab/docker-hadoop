@@ -11,4 +11,4 @@
 docker run -ti --rm \
     -v hadoop_namenode:/data_namenode \
     malkab/hadoop:3.3.6 \
-    -c "/hadoop/bin/hdfs namenode -format"
+    -c "/run_format_hdfs.sh"

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 docker compose \
-    -f ../docker-compose/docker-compose-namenode_datanode.yaml \
+    -f docker-compose.yaml \
     rm -f
 
 docker volume rm \

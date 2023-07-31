@@ -13,16 +13,23 @@ volumes:
 services:
     namenode:
         image: malkab/hadoop:3.3.6
-        hostname: kepler
+        # hostname is mandatory
+        hostname: helios
         container_name: hadoop_namenode
         network_mode: host
 
         environment:
+            # This is mandatory
+            CORE_SITE_FS_DEFAULTFS: helios:9000
+            HDFS_SITE_DFS_NAMENODE_RPC_ADDRESS: 0.0.0.0:9000
+
+            # Configuration, not mandatory
             HADOOP_HEAPSIZE_MAX: 5g
             HADOOP_ROOT_LOGGER: INFO,console
             HDFS_NAMENODE_OPTS: "-XX:+UseParallelGC -Xmx4g"
-            CORE_SITE_FS_DEFAULTFS: kepler:9000
-            HDFS_SITE_DFS_NAMENODE_RPC_ADDRESS: 0.0.0.0:9000
+
+            # The dashboard is available here
+            HDFS_SITE_DFS_NAMENODE_HTTP_ADDRESS: 0.0.0.0:8025
 
         volumes:
             - hadoop_namenode:/data_namenode
@@ -32,7 +39,7 @@ services:
 
     datanode:
         image: malkab/hadoop:3.3.6
-        hostname: kepler
+        hostname: helios
         container_name: hadoop_datanode
         network_mode: host
 
@@ -40,8 +47,9 @@ services:
             HADOOP_HEAPSIZE_MAX: 5g
             HADOOP_ROOT_LOGGER: INFO,console
             HDFS_DATANODE_OPTS: "-XX:+UseParallelGC -Xmx4g"
-            CORE_SITE_FS_DEFAULTFS: kepler:9000
-            HDFS_SITE_DFS_NAMENODE_RPC_ADDRESS: kepler:9000
+            CORE_SITE_FS_DEFAULTFS: helios:9000
+            HDFS_SITE_DFS_NAMENODE_RPC_ADDRESS: helios:9000
+            # ENV HDFS_SITE_DFS_DATANODE_HTTP_ADDRESS: 0.0.0.0:8030
 
         volumes:
             - hadoop_datanode:/data_datanode

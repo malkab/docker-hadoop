@@ -2,7 +2,7 @@
 
 # -----------------------------------------------------------------
 #
-# Runs a Hadoop DataNode.
+# Runs a Hadoop NameNode.
 #
 # -----------------------------------------------------------------
 
@@ -23,4 +23,4 @@ sed -i "s/HDFS_SITE_DFS_DATANODE_IPC_ADDRESS/${HDFS_SITE_DFS_DATANODE_IPC_ADDRES
 
 
 # Run
-/hadoop/bin/hdfs datanode
+/hadoop/bin/hdfs namenode -format
