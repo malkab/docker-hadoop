@@ -1,3 +1,14 @@
 #/usr/bin/bash
 
-scp -r tests-namenode_datanode/* malkab@kepler:/home/apps/test_hadoop
+# -----------------------------------------------------------------
+#
+# scp files to another host to test there.
+#
+# -----------------------------------------------------------------
+USER=XXX
+HOST=XXX
+SCP_PATH=/home/apps/
+
+scp -r 010-namenode_datanode $USER@$HOST:$SCP_PATH
+
+scp -r 020-single_datanode $USER@$HOST:$SCP_PATH
