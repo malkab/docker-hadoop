@@ -64,15 +64,15 @@
         <name>dfs.safemode.threshold.pct</name>
         <value>1.0f</value>
         <description>A security setting for replication. Don't pay much attention.</description>
-    </property>
+    </property> -->
 
     <property>
         <name>dfs.datanode.http.address</name>
         <value>HDFS_SITE_DFS_DATANODE_HTTP_ADDRESS</value>
         <description>This is where the DataNode publishes its web dashboard.</description>
-    </property>
+    </property> -->
 
-    <!-- <property>
+    <property>
         <name>dfs.datanode.address</name>
         <value>HDFS_SITE_DFS_DATANODE_ADDRESS</value>
     </property>
@@ -80,7 +80,7 @@
     <property>
         <name>dfs.datanode.ipc.address</name>
         <value>HDFS_SITE_DFS_DATANODE_IPC_ADDRESS</value>
-    </property> -->
+    </property>
 
     <property>
         <name>dfs.blocksize</name>
@@ -89,7 +89,7 @@
 
     <property>
         <name>dfs.replication</name>
-        <value>5</value>
+        <value>2</value>
     </property>
 
     <property>
