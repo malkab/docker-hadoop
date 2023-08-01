@@ -13,4 +13,31 @@
         <description>The name of the default file system.</description>
     </property>
 
+
+    <!-- CORS, for uploading data via WebHDFS -->
+    <property>
+            <name>hadoop.http.cross-origin.enabled</name>
+            <value>false</value>
+    </property>
+
+    <property>
+            <name>hadoop.http.cross-origin.allowed-origins</name>
+            <value>*</value>
+    </property>
+
+    <property>
+            <name>hadoop.http.cross-origin.allowed-methods</name>
+            <value>GET,POST,HEAD</value>
+    </property>
+
+    <property>
+            <name>hadoop.http.cross-origin.allowed-headers</name>
+            <value>X-Requested-With,Content-Type,Accept,Origin</value>
+    </property>
+
+    <property>
+            <name>hadoop.http.cross-origin.max-age</name>
+            <value>1800</value>
+    </property>
+
 </configuration>

@@ -16,19 +16,23 @@ services:
         # hostname is mandatory
         hostname: helios
         container_name: hadoop_namenode
+        # host network mode is mandatory
         network_mode: host
 
         environment:
-            # This is mandatory
+            # This is mandatory, is must include the hostname and the port
+            # where the HDFS will be available. Datanodes must attach
+            # to this address.
             CORE_SITE_FS_DEFAULTFS: helios:9000
             HDFS_SITE_DFS_NAMENODE_RPC_ADDRESS: 0.0.0.0:9000
 
-            # Configuration, not mandatory
+            # Configuration, not mandatory.
             HADOOP_HEAPSIZE_MAX: 5g
             HADOOP_ROOT_LOGGER: INFO,console
             HDFS_NAMENODE_OPTS: "-XX:+UseParallelGC -Xmx4g"
 
-            # The dashboard is available here
+            # The dashboard is available here. Change only in case of port
+            # conflict.
             HDFS_SITE_DFS_NAMENODE_HTTP_ADDRESS: 0.0.0.0:8025
 
         volumes:
@@ -39,17 +43,30 @@ services:
 
     datanode:
         image: malkab/hadoop:3.3.6
+        # hostname is mandatory
         hostname: helios
         container_name: hadoop_datanode
+        # host network mode is mandatory
         network_mode: host
 
         environment:
+            # Mandatory, where the namenode is available.
+            CORE_SITE_FS_DEFAULTFS: helios:9000
+            HDFS_SITE_DFS_NAMENODE_RPC_ADDRESS: helios:9000
+
+            # Configuration, not mandatory.
             HADOOP_HEAPSIZE_MAX: 5g
             HADOOP_ROOT_LOGGER: INFO,console
             HDFS_DATANODE_OPTS: "-XX:+UseParallelGC -Xmx4g"
-            CORE_SITE_FS_DEFAULTFS: helios:9000
-            HDFS_SITE_DFS_NAMENODE_RPC_ADDRESS: helios:9000
-            # ENV HDFS_SITE_DFS_DATANODE_HTTP_ADDRESS: 0.0.0.0:8030
+
+            # The Datanode dashboard is available here. Change only in case of
+            # port conflict.
+            HDFS_SITE_DFS_DATANODE_HTTP_ADDRESS: 0.0.0.0:8045
+            # Datanode address. Change only in case of port conflict.
+            HDFS_SITE_DFS_DATANODE_ADDRESS: 0.0.0.0:9970
+            # This is the interprocess communication address. Change only in
+            # case of port conflict.
+            HDFS_SITE_DFS_DATANODE_IPC_ADDRESS: 0.0.0.0:9800
 
         volumes:
             - hadoop_datanode:/data_datanode

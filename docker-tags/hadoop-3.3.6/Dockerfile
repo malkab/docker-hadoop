@@ -29,8 +29,8 @@ RUN chmod 755 -R /usr/bin/ ; chmod 755 /config.sh ; /config.sh ; rm /config.sh
 RUN chown -R 1000:1000 /hadoop_tmp
 RUN chown -R 1000:1000 /hadoop
 
-# # FROM scratch
-# # COPY --from=build / /
+FROM scratch
+COPY --from=build / /
 
 ENV PATH=$PATH:/hadoop/bin:/hadoop/sbin
 
@@ -41,20 +41,20 @@ ENV HADOOP_ROOT_LOGGER=WARN,DRFA
 ENV HADOOP_HEAPSIZE_MAX=1G
 ENV HDFS_NAMENODE_OPTS="-XX:+UseParallelGC -Xmx1g"
 
-# Where the HDFS site will listen
+# Where the HDFS site will listen. localhost will not work, this must
+# be overriden at Compose level with the real name of the host.
 ENV CORE_SITE_FS_DEFAULTFS=localhost:9000
+# Filter IP to listen to.
 ENV HDFS_SITE_DFS_NAMENODE_RPC_ADDRESS=0.0.0.0:9000
-
-# The dashboard for the namenode
+# The dashboard for the namenode. Change only in case of port conflict.
 ENV HDFS_SITE_DFS_NAMENODE_HTTP_ADDRESS=0.0.0.0:8020
 
-# Datanode dashboard
+# Datanode dashboard and IP to listen to. Change only in case of port conflict.
 ENV HDFS_SITE_DFS_DATANODE_HTTP_ADDRESS=0.0.0.0:8030
-
-# Datanode address
+# Datanode address. Change only in case of port conflict.
 ENV HDFS_SITE_DFS_DATANODE_ADDRESS=0.0.0.0:9878
-
-# This is the interprocess communication address
+# This is the interprocess communication address. Change only in case of port
+# conflict.
 ENV HDFS_SITE_DFS_DATANODE_IPC_ADDRESS=0.0.0.0:9899
 
 ENTRYPOINT [ "/bin/bash" ]
