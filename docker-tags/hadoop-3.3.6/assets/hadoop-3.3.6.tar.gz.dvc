@@ -1,0 +1,5 @@
+outs:
+- md5: 1cbe1214299cd3bd282d33d3934b5cbd
+  size: 730107476
+  hash: md5
+  path: hadoop-3.3.6.tar.gz
